@@ -24,14 +24,14 @@ class UserTest extends TestCase
 
     public function test_login_bad_user(): void
     {
-        $response = $this->post('/api/login',['email' => 'nonexist@test.com', 'password' => '123456789']);
+        $response = $this->postJson('/api/login',['email' => 'nonexist@test.com', 'password' => '123456789']);
 
         $response->assertStatus(404);
     }
 
     public function test_login_success(): void
     {
-        $response = $this->post('/api/login',['email' => 'example@test.com', 'password' => '123456789']);
+        $response = $this->postJson('/api/login',['email' => 'example@test.com', 'password' => '123456789']);
 
         $response->assertStatus(200);
     }
