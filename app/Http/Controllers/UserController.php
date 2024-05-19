@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\RequestLogin;
+use App\Http\Requests\ResquestRegister;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -18,7 +19,7 @@ class UserController extends Controller
             $token=$user->createToken('auth_token');
 
             return response()->json([
-                'satus'=>'ok',
+                'status'=>'ok',
                 'token'=>$token->plainTextToken
 
             ],200);
@@ -28,5 +29,20 @@ class UserController extends Controller
         }
     }
 
-    
+    public function register(ResquestRegister $request){
+
+        $user=User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password)
+        ]);
+
+        $token=$user->createToken('auth_token');
+
+        return response()->json([
+            'status'=>'ok',
+            'token'=>$token->plainTextToken
+        ],201);
+
+    } 
 }
