@@ -2,24 +2,16 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function test_set_database_config()
-    {
-     Artisan::call('migrate:reset');
-     Artisan::call('migrate');
-     Artisan::call('db:seed');
-     
-     $response=$this->get('/');
-     
-     $response->assertStatus(200);
-    }
- 
+    use RefreshDatabase;
  
     public function test_login_bad_user(): void
     {
@@ -33,7 +25,13 @@ class UserTest extends TestCase
 
     public function test_login_success(): void
     {
-        $response = $this->postJson('/api/login',['email' => 'example@test.com', 'password' => '123456789']);
+        
+        $user = User::factory()->create([
+            'name'=>'test',
+            'email' => 'example@test.com',
+            'password' => Hash::make('123456789'),
+        ]);
+        $response = $this->postJson('/api/login',['email' => $user->email, 'password' => '123456789']);
        
         $response->assertJsonStructure([
             'status',

@@ -11,6 +11,6 @@ Route::post('/register',[UserController::class,'register']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
    
-    Route::resource('/movies',MovieController::class);
+    Route::resource('/movie',MovieController::class);
 
 });

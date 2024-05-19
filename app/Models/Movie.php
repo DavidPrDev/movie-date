@@ -14,6 +14,8 @@ class Movie extends Model
             'title',
             'viewing_date',
             'seen_status',
+            'img_route',
+            'user_id',
             'id_movie'
     ];
 
