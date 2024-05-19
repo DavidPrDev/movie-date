@@ -76,8 +76,6 @@ class MovieController extends Controller
 
        $movie->update($validatedData);
 
-       
-
        return response()->json([
         'status'=>'ok'
        ],203);
