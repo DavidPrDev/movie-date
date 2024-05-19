@@ -1,0 +1,394 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "movie-date",
+        "contact": {
+            "name": "David Pérez Romero",
+            "email": "contacto@david-pr.com"
+        },
+        "license": {
+            "name": "Licencia",
+            "url": "http://www.example.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/movie": {
+            "get": {
+                "tags": [
+                    "Movie Controller"
+                ],
+                "summary": "Show a all movie ",
+                "description": "Show all movies",
+                "operationId": "73d27c2257d6159bd1a40589cc59c00e",
+                "responses": {
+                    "200": {
+                        "description": "Movie found"
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Movie Controller"
+                ],
+                "summary": "Store a movie",
+                "description": "Store a movie",
+                "operationId": "2c657c385fd3c24a1aa167d69b57c24f",
+                "requestBody": {
+                    "description": "Recipe data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestMovie"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Movie stored",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/movie/{id}": {
+            "get": {
+                "tags": [
+                    "Movie Controller"
+                ],
+                "summary": "Show a movie by ID",
+                "description": "Show a movie",
+                "operationId": "cb0bfd96abc33d91d534d3de76ee4439",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the movie",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie found"
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Movie Controller"
+                ],
+                "summary": "Update movie",
+                "description": "Update  movie",
+                "operationId": "87a5bcde288ba241d26a644a72495142",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the movie",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Movie data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestUpdateMovie"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Movie stored",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Movie Controller"
+                ],
+                "summary": "Delete a movie by ID",
+                "description": "Delete a movie",
+                "operationId": "85362a9026a50a31c403eed5eb5bc76b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the movie",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "203": {
+                        "description": "Deleted movie"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "User Controller"
+                ],
+                "summary": "Authenticate user and generate JWT token",
+                "operationId": "0fc9610184083ac6dddab2c63139225a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123456789"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "accessToken": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_at": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User Controller"
+                ],
+                "summary": "Register a new user",
+                "operationId": "2f25885f3b6f61ca11724ec302d2e439",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "test register"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "register@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123456789"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "User Controller"
+                ],
+                "summary": "Logout user and revoke all tokens",
+                "operationId": "67d5147477c548bfbc3f982833bbc7bd",
+                "responses": {
+                    "200": {
+                        "description": "Successful logout"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RequestMovie": {
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Hana-bi"
+                    },
+                    "viewing_date": {
+                        "type": "string",
+                        "example": "2024-05-28"
+                    },
+                    "seen_status": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "img_route": {
+                        "type": "integer",
+                        "example": "image.jpg"
+                    },
+                    "id_movie": {
+                        "type": "string",
+                        "example": "263"
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "RequestUpdateMovie": {
+                "properties": {
+                    "viewing_date": {
+                        "type": "string",
+                        "example": "2024-05-28"
+                    },
+                    "seen_status": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Movie Controller",
+            "description": "Endpoints related to movies controller"
+        },
+        {
+            "name": "User Controller",
+            "description": "Endpoints related to authentication"
+        }
+    ]
+}
