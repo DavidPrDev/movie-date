@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestMovie;
 use App\Http\Requests\RequestUpdateMovie;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -55,7 +56,10 @@ class MovieController extends Controller
      */
     public function show(Request $request,$id)
     {
-        $movie=$request->user()->movies()->find($id);
+
+        $movie = Movie::find($id);
+
+        Gate::authorize('validateUser',  $movie, $request->user());
 
         return response()->json([
             'status'=>'ok',
@@ -71,6 +75,8 @@ class MovieController extends Controller
     {
 
        $movie=Movie::findOrFail($id);
+
+       Gate::authorize('validateUser',  $movie, $request->user());
 
        $validatedData = $request->validated();
 
@@ -88,6 +94,8 @@ class MovieController extends Controller
     public function destroy(Request $request, $id)
     {
         $movie=Movie::findOrFail($id);
+        
+        Gate::authorize('validateUser',  $movie, $request->user());
 
         $movie->delete();
 

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class MovieTest extends TestCase
@@ -55,6 +56,21 @@ class MovieTest extends TestCase
         ]);
     
         $response->assertStatus(200);
+    } 
+
+    public function test_show_movie_without_permission(){
+
+        $user = User::factory()->create([
+            'email' => 'whitout@example.com',
+            'password' => Hash::make('password123'),
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get('/api/movie/1');
+
+    
+        $response->assertStatus(403);
     } 
 
     public function test_create_movie(){
