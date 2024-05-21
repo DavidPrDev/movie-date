@@ -1,23 +1,47 @@
 <template>
-  
-  <h1>Movie date!</h1>
+ 
+   <div v-if="show==true" class="overlay">📽️</div>
 
-  <nav>
-    <RouterLink to="/">Inicio</RouterLink>
-    <RouterLink to="/about">Tus peliculas</RouterLink>
-  </nav>
-
-  <main>
-    <RouterView />
-  </main>
+    <HeaderDiv/>
+    <main>
+      <RouterView />
+    </main>
 
 </template>
 
 <script setup>
-import { RouterLink,RouterView } from 'vue-router';
+
+  import {RouterView } from 'vue-router';
+  
+  import {ref} from 'vue'
+
+  const show=ref(true);
+  
+  setTimeout(()=>{
+
+    show.value=false;
+
+  }, 1100);
+
+  import HeaderDiv from './components/HeaderDiv.vue';
+
+  const apiKey= import.meta.env.VITE_API_KEY;
 
 </script>
 
 <style scoped>
+
+.overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  margin-top:0;
+  z-index: 4;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 70px;
+}
 
 </style>
