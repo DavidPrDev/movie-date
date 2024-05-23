@@ -25,7 +25,6 @@
 
   import HeaderDiv from './components/HeaderDiv.vue';
 
-  const apiKey= import.meta.env.VITE_API_KEY;
 
 </script>
 
@@ -36,7 +35,7 @@
   width: 100%;
   height: 100%;
   background-color: black;
-  margin-top:0;
+  margin-top:-10px;
   z-index: 4;
   justify-content: center;
   display: flex;

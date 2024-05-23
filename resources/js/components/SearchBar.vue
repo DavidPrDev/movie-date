@@ -7,19 +7,21 @@
         <button class="no-decoration btn-search" @click="handleSubmit()">🔍</button>
       </div>
     </div>
-    {{ movie }}
+    
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import state from '../states/globalState';
 
 const router = useRouter();
 
 const movie = ref('');
 
 const handleSubmit = () => {
-  router.push({ name: 'movie', params: { movie: movie.value } });
+  state.movie = movie.value;
+  router.push({ name: 'movie'});
 
 };
 </script>

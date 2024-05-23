@@ -24,7 +24,8 @@
       <img src="/images/mononoke.png" alt="Logo" width="120px" height="180px"/>
       <img src="/images/losSiete.png" alt="Logo" width="120px" height="180px"/>
       <img src="/images/middsomar.png" alt="Logo" width="120px" height="180px"/>
-
+      
+      
   </div>
   
 
@@ -49,7 +50,7 @@
   gap: 13px;
 }
 .second{
-  padding-top:190px ;
+  padding-top:190px;
 }
 
 

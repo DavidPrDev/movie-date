@@ -22,17 +22,19 @@
   display: flex;
   flex-direction: column;
   font-size: 40px;
-  padding-top: 5%;
+  padding-top: 20px;
   color: white;
   position: relative; 
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding-bottom: 60px;
   }
 
 .overlay {
   position: fixed;
-    width: 100%;
+  width: 100%;
   height: 100%;
-
-background-image:
+  background-image:
   linear-gradient(
     to bottom,
     hsla(0, 0%, 0%, 0) 0%,

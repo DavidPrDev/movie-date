@@ -15,7 +15,7 @@
     display: flex;
     margin-left:auto;
     margin-right: 5%;
-    gap:15px;
+    
   }
   .link{
     text-decoration: none;
