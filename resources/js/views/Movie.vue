@@ -151,11 +151,11 @@ const movies=service.getMovies();
   }
   .btn-ford {
     left: 30px;
-    top: 250px;
+    top: 42%;
   }
   .btn-back {
     right: 30px;
-    top: 250px;
+    top: 39.5%;
     transform: rotate(180deg);
   }
   @media screen and (max-width: 600px) {
