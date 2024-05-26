@@ -1,9 +1,9 @@
 <template>
-  <h1>Resultados búsqueda:</h1>
+ <!--  <h1>Resultados búsqueda:</h1> -->
   <div v-if="movies.length===0 && loading==false">
     <h1>Sin resultados</h1>
   </div>
-  <div v-else-if="movies.length>0 && loading==false">
+  <div v-else-if="movies.length>0 && loading==false" class="container-images">
 
     <button class="btn-ford" @click="backguardPosition()">
 
@@ -30,11 +30,11 @@
         class="img-movie"
         :src="imgValidator(movie)"
         :alt="'image the ' + movie.original_title + ' movie'"
-        width="190"
-        height="270"
+        width="210"
+        height="290"
       />
       <div class="container-body-movie">
-        <h4>{{ movie.title }} ({{ formatDate(movie.release_date) }})</h4>
+        <h4>{{ movie.title }} ({{ formatYear(movie.release_date) }})</h4>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@ import { ref, onUnmounted,onMounted } from 'vue';
 import state from '../states/globalState';
 import { useRouter } from 'vue-router';
 import TheMovieDbService from '../services/TheMovieDbService';
-import { imgValidator,formatDate} from '../utils/commonFunctions';
+import { imgValidator,formatYear} from '../utils/commonFunctions';
 
 
 const position = ref(0);
@@ -82,12 +82,12 @@ const movies=service.getMovies();
 
   const forwardPosition = () => {
     if (position.value <= -200 * (movies.value.length +1)) return;
-    position.value -= 200;
+    position.value -= 215;
   };
 
   const backguardPosition = () => {
     if (position.value >= 0) return;
-    position.value += 200;
+    position.value += 215;
   };
 
   onUnmounted(() => {
@@ -100,6 +100,9 @@ const movies=service.getMovies();
     margin-bottom: 0;
     text-align: center;
     color: white;
+  }
+  .container-images{
+    margin-top: 8%;
   }
   .container-movies {
     display: flex;
@@ -148,11 +151,25 @@ const movies=service.getMovies();
   }
   .btn-ford {
     left: 30px;
-    top: 240px;
+    top: 250px;
   }
   .btn-back {
     right: 30px;
-    top: 230px;
+    top: 250px;
     transform: rotate(180deg);
   }
+  @media screen and (max-width: 600px) {
+  .btn-ford{
+    left: 0;
+    padding-left: 0;
+  }
+  .btn-back{
+    right: 0;
+    padding-right: 0;
+  }
+  .btn-ford, .btn-back{
+    font-size: 70px;
+  }
+
+}
 </style>

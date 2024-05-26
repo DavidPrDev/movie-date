@@ -35,12 +35,11 @@ export default class TheMovieDbService{
 
         try{
 
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${state.movieId}?api_key=${apiKey}&language=es-ES`);
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${state.movieId}?api_key=${apiKey}`);
 
             const json = await response.json();
 
             this.movie.value = await json;
-
         }catch(error){
 
             console.log(error);

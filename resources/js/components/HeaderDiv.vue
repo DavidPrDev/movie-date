@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         
-        <h1 class="title">MD 📽️</h1>
+        <h1 class="title">Movie <span class="date">Date</span> 📽️</h1>
 
         <MenuNav />
         
@@ -21,17 +21,20 @@
     align-items: center;
     margin: auto;
     color: whitesmoke;
-    width: 90%;
-    background-color: #303236;
-    border-radius:10px ;
+    width: 100%;
+    background-color: #30323690;
+    border-radius:0px ;
     top:10px;
-    height:50px;
-    margin-top: 10px
+    height:60px;
     
     
     }
     .title{
         margin-left: 5%;
+    }
+    .date {
+
+     color:rgb(216, 216, 49)
     }
 
 </style>

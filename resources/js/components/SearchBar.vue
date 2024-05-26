@@ -1,9 +1,9 @@
 <template>
     <div class="search-container">
-      <h1 class="title">Movie date</h1>
+      <h1 class="title">Movie <span class="date">date</span></h1>
       <p>Organiza tus peliculas en un formato agenda</p>
       <div class="search">
-        <input v-model="movie" type="text" class="no-decoration input-search" placeholder="Busca tu proxima peli">
+        <input v-model="movie" type="text" class="no-decoration input-search"  name="inputSearch" placeholder="Busca tu proxima peli">
         <button class="no-decoration btn-search" @click="handleSubmit()">🔍</button>
       </div>
     </div>
@@ -37,6 +37,7 @@ const handleSubmit = () => {
     padding:20px;
     border-radius:10px;
     font-weight: bold;
+
     }
 
     .title{
@@ -68,17 +69,20 @@ const handleSubmit = () => {
       width: 100%;
       color:white ;
       font-size: 20px;
-      padding-left: 5px;
+      padding-left: 10px;
     }
 
     .btn-search{
       margin-left: auto;
-      font-size: 35px;
+      font-size: 30px;
       margin-bottom: 4px;
       cursor: pointer;
     }
 
     input:focus {
     outline: none; 
+    }
+    .date {
+    color:rgb(216, 216, 49)
     }
 </style>
